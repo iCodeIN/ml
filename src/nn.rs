@@ -9,24 +9,24 @@ use std::{
     ops::{Add, Mul},
 };
 
-pub struct Perceptron<X, W, F>
+pub struct Perceptron<X, W, F, O>
 where
     W: Clone + Mul<X>,
     <W as Mul<X>>::Output: Add,
     <<W as Mul<X>>::Output as Add>::Output: Sum<<W as Mul<X>>::Output>,
-    F: Fn(<<W as Mul<X>>::Output as Add>::Output) -> bool,
+    F: Fn(<<W as Mul<X>>::Output as Add>::Output) -> O,
 {
     afunc: F,
     weights: Vec<W>,
     _k: PhantomData<X>,
 }
 
-impl<X, W, F> Perceptron<X, W, F>
+impl<X, W, F, O> Perceptron<X, W, F, O>
 where
     W: Clone + Mul<X>,
     <W as Mul<X>>::Output: Add,
     <<W as Mul<X>>::Output as Add>::Output: Sum<<W as Mul<X>>::Output>,
-    F: Fn(<<W as Mul<X>>::Output as Add>::Output) -> bool,
+    F: Fn(<<W as Mul<X>>::Output as Add>::Output) -> O,
 {
     pub fn new(afunc: F, weights: Vec<W>) -> Self {
         Perceptron {
@@ -36,7 +36,7 @@ where
         }
     }
 
-    pub fn apply(&self, xs: Vec<X>) -> bool {
+    pub fn apply(&self, xs: Vec<X>) -> O {
         let k: <<W as Mul<X>>::Output as Add>::Output = xs
             .into_iter()
             .zip(self.weights.clone().into_iter())
