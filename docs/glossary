@@ -1,0 +1,23 @@
+T - Task, E - Experience, P - Performance
+perceptron neuron - make decisions by weighing up evidence
+sigmoid neuron - logistic neuron
+logistic function
+linear function
+non-linear function
+stochastic gradient descent
+curve fitting
+logistic regression
+linear regression
+supervised learning
+un-supervised learning, aka pattern detection
+regression problem
+classification problem
+clustering problem
+cocktail party problem
+hypothesis function
+  linear function
+activation function
+  logistic function
+cost function
+  squared error function
+derivative of x^2 is 2x
